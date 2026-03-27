@@ -382,7 +382,10 @@ public class DataManager implements IDirectoryCache
         Path file = getCurrentStorageFile(true);
         JsonUtils.writeJsonToFile(root, file);
 
-        canSave = false;
+        if (forceSave == false)
+        {
+            canSave = false;
+        }
     }
 
     public static void clear()

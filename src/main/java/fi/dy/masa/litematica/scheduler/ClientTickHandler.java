@@ -11,6 +11,8 @@ import fi.dy.masa.litematica.util.WorldUtils;
 
 public class ClientTickHandler implements IClientTickHandler
 {
+    private int autoSaveTimer;
+
     @Override
     public void onClientTick(Minecraft mc)
     {
@@ -42,6 +44,25 @@ public class ClientTickHandler implements IClientTickHandler
 
             DataManager.getSchematicPlacementManager().onClientTick(mc);
             TaskScheduler.getInstanceClient().runTasks();
+
+            if (Configs.Generic.AUTO_SAVE.getBooleanValue())
+            {
+                int intervalTicks = Math.max(1, Configs.Generic.AUTO_SAVE_INTERVAL_SECONDS.getIntegerValue() * 20);
+
+                if (++this.autoSaveTimer >= intervalTicks)
+                {
+                    DataManager.save(true);
+                    this.autoSaveTimer = 0;
+                }
+            }
+            else
+            {
+                this.autoSaveTimer = 0;
+            }
+        }
+        else
+        {
+            this.autoSaveTimer = 0;
         }
     }
 }

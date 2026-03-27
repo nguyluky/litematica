@@ -47,7 +47,9 @@ public class Configs implements IConfigHandler
         public static final ConfigString        CUSTOM_SCHEMATIC_BASE_DIRECTORY         = new ConfigString( "customSchematicBaseDirectory", DataManager.getDefaultBaseSchematicDirectory().toAbsolutePath().toString()).apply(GENERIC_KEY);
 
         public static final ConfigBoolean       AREAS_PER_WORLD             = new ConfigBoolean("areaSelectionsPerWorld", true).apply(GENERIC_KEY);
+        public static final ConfigBoolean       AUTO_SAVE                   = new ConfigBoolean("autoSave", false).apply(GENERIC_KEY);
 //        public static final ConfigBoolean       BETTER_RENDER_ORDER         = new ConfigBoolean("betterRenderOrder", true).apply(GENERIC_KEY);
+        public static final ConfigInteger       AUTO_SAVE_INTERVAL_SECONDS  = new ConfigInteger("autoSaveIntervalSeconds", 300, 10, 3600).apply(GENERIC_KEY);
         public static final ConfigBoolean       CHANGE_SELECTED_CORNER      = new ConfigBoolean("changeSelectedCornerOnMove", true).apply(GENERIC_KEY);
         public static final ConfigBoolean       CLONE_AT_ORIGINAL_POS       = new ConfigBoolean("cloneAtOriginalPosition", false).apply(GENERIC_KEY);
         public static final ConfigBoolean       COMMAND_DISABLE_FEEDBACK    = new ConfigBoolean("commandDisableFeedback", true).apply(GENERIC_KEY);
@@ -122,6 +124,7 @@ public class Configs implements IConfigHandler
 
         public static final ImmutableList<IConfigBase> OPTIONS = ImmutableList.of(
                 AREAS_PER_WORLD,
+                AUTO_SAVE,
 //				BETTER_RENDER_ORDER,
                 CHANGE_SELECTED_CORNER,
                 CLONE_AT_ORIGINAL_POS,
@@ -203,6 +206,7 @@ public class Configs implements IConfigHandler
                 COMMAND_NAME_SUMMON,
                 COMMAND_TASK_INTERVAL,
                 CUSTOM_SCHEMATIC_BASE_DIRECTORY,
+                AUTO_SAVE_INTERVAL_SECONDS,
                 EASY_PLACE_SWAP_INTERVAL,
                 PICK_BLOCKABLE_SLOTS,
                 TOOL_ITEM,
